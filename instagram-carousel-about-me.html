@@ -77,11 +77,9 @@
       display: flex;
       width: calc(7 * 1080px);
       height: 1080px;
-      transform: translateX(0);
+      transform: scale(0.65) translateX(0);
       transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
       transform-origin: top left;
-      scale: 0.65;
-      transform-box: fill-box;
     }
 
     /* ─── Individual slide base ─── */
@@ -989,7 +987,7 @@
       current = n;
       // 0.65 scale: visual shift is 1080 * 0.65 = 702px per slide
       // But since we scale the track itself, the translateX is in unscaled px
-      track.style.transform = `translateX(-${current * 1080}px)`;
+      track.style.transform = `scale(0.65) translateX(-${current * 1080}px)`;
       counter.textContent = `Slide ${current + 1} of ${TOTAL}`;
       document.querySelectorAll('.dot').forEach((d, i) => {
         d.classList.toggle('active', i === current);
