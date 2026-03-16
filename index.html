@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Junk Bug — Handmade with Love, from the Lowcountry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand:        #F2EBE0;
+    --sand-light:  #FAF6F1;
+    --driftwood:   #B8956A;
+    --driftwood-dark: #8C6C48;
+    --coastal-blue: #5A8FA3;
+    --coastal-blue-light: #A8C8D8;
+    --sage:        #7A9B7A;
+    --sage-light:  #C8DCC8;
+    --cream:       #FEFCF8;
+    --charcoal:    #2E2A26;
+    --warm-gray:   #7A736A;
+    --light-border: #E4DDD4;
+    --font-display: 'Playfair Display', serif;
+    --font-body:    'Lato', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--charcoal);
+    line-height: 1.6;
+  }
+
+  /* ── NAV ─────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(254, 252, 248, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--light-border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--driftwood-dark);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--warm-gray);
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--driftwood); }
+
+  .nav-cta {
+    background: var(--driftwood);
+    color: white !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--driftwood-dark) !important; color: white !important; }
+
+  .nav-hamburger {
+    display: none;
+    flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+  }
+  .nav-hamburger span {
+    width: 24px; height: 2px; background: var(--charcoal); border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* ── HERO ────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 70px;
+    background: linear-gradient(135deg, var(--sand-light) 0%, var(--sand) 100%);
+    overflow: hidden;
+  }
+
+  .hero-content {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 4rem 5rem 6rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--coastal-blue);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.15;
+    color: var(--charcoal);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--driftwood);
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--warm-gray);
+    max-width: 440px;
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--driftwood);
+    color: white;
+    padding: 0.9rem 2rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--driftwood-dark); transform: translateY(-2px); }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border: 2px solid var(--driftwood);
+    color: var(--driftwood);
+    padding: 0.9rem 2rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover {
+    background: var(--driftwood);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .hero-visual {
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .hero-illustration {
+    width: 100%; height: 100%;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Decorative collage of product shapes */
+  .hero-mosaic {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 12px;
+    width: 90%;
+    height: 90%;
+    padding: 3rem 2rem;
+  }
+
+  .mosaic-cell {
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--sand);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+    transition: transform 0.3s;
+  }
+  .mosaic-cell:hover { transform: scale(1.03); }
+
+  .mosaic-cell.tall  { grid-row: span 2; }
+  .mosaic-cell.wide  { grid-column: span 2; }
+
+  .mosaic-cell.c1 { background: linear-gradient(135deg, #D4C4A8, #C4A87A); }
+  .mosaic-cell.c2 { background: linear-gradient(135deg, #A8C4C8, #7AA8B4); }
+  .mosaic-cell.c3 { background: linear-gradient(135deg, #C8D4A8, #A0B87A); }
+  .mosaic-cell.c4 { background: linear-gradient(135deg, #D4B8A8, #C49080); }
+  .mosaic-cell.c5 { background: linear-gradient(135deg, #B4C8D4, #8AAABB); }
+  .mosaic-cell.c6 { background: linear-gradient(135deg, #D4CCA8, #C4B87A); }
+
+  /* ── MARQUEE ─────────────────────────────────────── */
+  .marquee-wrap {
+    background: var(--driftwood);
+    color: white;
+    padding: 0.9rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee-track {
+    display: inline-block;
+    animation: marquee 28s linear infinite;
+  }
+
+  .marquee-track span {
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-right: 3rem;
+  }
+
+  .marquee-track span::before {
+    content: '✦ ';
+    color: rgba(255,255,255,0.5);
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── SECTIONS SHARED ─────────────────────────────── */
+  section { padding: 5rem 2rem; }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--coastal-blue);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+    color: var(--charcoal);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+
+  .section-lead {
+    font-size: 1.05rem;
+    color: var(--warm-gray);
+    max-width: 560px;
+    line-height: 1.8;
+  }
+
+  .section-header { margin-bottom: 3.5rem; }
+  .section-header.center { text-align: center; }
+  .section-header.center .section-lead { margin: 0 auto; }
+
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  /* ── ABOUT ───────────────────────────────────────── */
+  #about {
+    background: white;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-card {
+    background: var(--sand-light);
+    border-radius: 24px;
+    padding: 3rem;
+    position: relative;
+  }
+
+  .about-card::before {
+    content: '';
+    position: absolute;
+    top: -12px; left: -12px; right: 12px; bottom: 12px;
+    border-radius: 24px;
+    background: var(--coastal-blue-light);
+    z-index: -1;
+  }
+
+  .about-badge {
+    display: inline-block;
+    background: var(--driftwood);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-quote {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--charcoal);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-sig {
+    font-size: 0.9rem;
+    color: var(--warm-gray);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .about-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .about-feature {
+    display: flex; gap: 0.75rem; align-items: flex-start;
+  }
+
+  .about-feature-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .about-feature-text strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 0.2rem;
+  }
+
+  .about-feature-text p {
+    font-size: 0.85rem;
+    color: var(--warm-gray);
+    line-height: 1.5;
+  }
+
+  /* ── CATEGORIES ──────────────────────────────────── */
+  #shop {
+    background: var(--sand-light);
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .category-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--charcoal);
+    border: 1px solid var(--light-border);
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .category-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--driftwood);
+    transform: scaleX(0);
+    transition: transform 0.25s;
+  }
+
+  .category-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+    border-color: transparent;
+  }
+
+  .category-card:hover::before { transform: scaleX(1); }
+
+  .category-emoji {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .category-name {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--charcoal);
+  }
+
+  .category-desc {
+    font-size: 0.85rem;
+    color: var(--warm-gray);
+    line-height: 1.5;
+  }
+
+  .category-card.featured {
+    background: linear-gradient(135deg, var(--driftwood) 0%, var(--driftwood-dark) 100%);
+    color: white;
+    border-color: transparent;
+    grid-column: span 2;
+    text-align: left;
+    display: flex; align-items: center; gap: 2rem;
+    padding: 2.5rem 3rem;
+  }
+
+  .category-card.featured .category-name,
+  .category-card.featured .category-desc { color: white; }
+  .category-card.featured .category-desc { opacity: 0.85; font-size: 1rem; max-width: 380px; }
+
+  .category-card.featured::before { background: white; }
+
+  .featured-content { flex: 1; }
+  .featured-icon { font-size: 5rem; flex-shrink: 0; }
+
+  .featured-cta {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-top: 1.25rem;
+    background: white;
+    color: var(--driftwood-dark);
+    padding: 0.6rem 1.4rem;
+    border-radius: 2rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+  .featured-cta:hover { transform: translateX(4px); }
+
+  /* ── PROCESS ─────────────────────────────────────── */
+  #process {
+    background: white;
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    position: relative;
+  }
+
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 2.2rem;
+    left: calc(12.5% + 2rem);
+    right: calc(12.5% + 2rem);
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--light-border) 0, var(--light-border) 8px, transparent 8px, transparent 16px);
+  }
+
+  .process-step {
+    text-align: center;
+    position: relative;
+  }
+
+  .step-number {
+    width: 4.5rem; height: 4.5rem;
+    border-radius: 50%;
+    background: var(--sand);
+    border: 3px solid var(--driftwood);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--driftwood);
+    margin: 0 auto 1.5rem;
+    position: relative;
+    z-index: 1;
+    background: white;
+  }
+
+  .step-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--charcoal);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-desc {
+    font-size: 0.88rem;
+    color: var(--warm-gray);
+    line-height: 1.6;
+  }
+
+  /* ── EVENTS ──────────────────────────────────────── */
+  #events {
+    background: var(--sand-light);
+  }
+
+  .events-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .event-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.75rem 2rem;
+    display: flex; gap: 1.5rem; align-items: flex-start;
+    border: 1px solid var(--light-border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .event-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+  }
+
+  .event-date-badge {
+    background: var(--sand);
+    border-radius: 12px;
+    padding: 0.6rem 1rem;
+    text-align: center;
+    flex-shrink: 0;
+    min-width: 64px;
+    border: 1px solid var(--light-border);
+  }
+
+  .event-month {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--coastal-blue);
+    font-weight: 700;
+  }
+
+  .event-day {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--driftwood);
+    line-height: 1;
+  }
+
+  .event-info h3 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--charcoal);
+    margin-bottom: 0.25rem;
+  }
+
+  .event-location {
+    font-size: 0.88rem;
+    color: var(--warm-gray);
+    margin-bottom: 0.4rem;
+  }
+
+  .event-time {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: var(--coastal-blue);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .events-cta {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  /* ── CUSTOM ORDERS ───────────────────────────────── */
+  #custom {
+    background: linear-gradient(135deg, var(--charcoal) 0%, #3D3630 100%);
+    color: white;
+  }
+
+  #custom .section-eyebrow { color: var(--coastal-blue-light); }
+  #custom .section-title   { color: white; }
+  #custom .section-lead    { color: rgba(255,255,255,0.7); }
+
+  .custom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .custom-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .custom-option {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: background 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+
+  .custom-option:hover {
+    background: rgba(255,255,255,0.14);
+    transform: translateY(-3px);
+  }
+
+  .custom-option-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .custom-option h4   { font-family: var(--font-display); font-size: 1rem; color: white; margin-bottom: 0.3rem; }
+  .custom-option p    { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.45; }
+
+  .custom-form {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 2.5rem;
+  }
+
+  .custom-form h3 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: white;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+
+  .form-group label {
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    font-weight: 700;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    color: white;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--driftwood);
+    background: rgba(255,255,255,0.12);
+  }
+
+  .form-group select option { background: #2E2A26; color: white; }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .btn-form {
+    width: 100%;
+    background: var(--driftwood);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-form:hover { background: var(--driftwood-dark); transform: translateY(-2px); }
+
+  /* ── TESTIMONIALS ────────────────────────────────── */
+  #love {
+    background: white;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .testimonial-card {
+    background: var(--sand-light);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid var(--light-border);
+    position: relative;
+  }
+
+  .testimonial-card::before {
+    content: '"';
+    font-family: var(--font-display);
+    font-size: 5rem;
+    color: var(--driftwood);
+    opacity: 0.15;
+    position: absolute;
+    top: -0.5rem;
+    left: 1.5rem;
+    line-height: 1;
+  }
+
+  .testimonial-stars {
+    color: var(--driftwood);
+    font-size: 1rem;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-text {
+    font-size: 0.95rem;
+    color: var(--charcoal);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+
+  .author-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--coastal-blue-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    font-family: var(--font-display);
+  }
+
+  .author-name { font-weight: 700; font-size: 0.9rem; color: var(--charcoal); }
+  .author-loc  { font-size: 0.8rem; color: var(--warm-gray); }
+
+  /* ── INSTAGRAM ───────────────────────────────────── */
+  #instagram {
+    background: var(--sand-light);
+  }
+
+  .instagram-handle {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    color: var(--coastal-blue);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s;
+  }
+  .instagram-handle:hover { color: var(--driftwood); }
+
+  .instagram-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.75rem;
+    margin-top: 3rem;
+  }
+
+  .insta-tile {
+    aspect-ratio: 1;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--sand);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    transition: transform 0.25s, opacity 0.25s;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .insta-tile:hover { transform: scale(1.05); }
+
+  .insta-tile:nth-child(1)  { background: linear-gradient(135deg, #D4C4A8, #C4A87A); }
+  .insta-tile:nth-child(2)  { background: linear-gradient(135deg, #A8C4C8, #7AB4C4); }
+  .insta-tile:nth-child(3)  { background: linear-gradient(135deg, #C8D4A8, #A0B87A); }
+  .insta-tile:nth-child(4)  { background: linear-gradient(135deg, #D4B8A8, #C49080); }
+  .insta-tile:nth-child(5)  { background: linear-gradient(135deg, #B8C8D4, #8AAABB); }
+  .insta-tile:nth-child(6)  { background: linear-gradient(135deg, #D4CCA8, #C4B87A); }
+
+  .insta-overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.25s;
+  }
+
+  .insta-tile:hover .insta-overlay {
+    background: rgba(0,0,0,0.3);
+  }
+
+  .insta-overlay-icon {
+    color: white;
+    font-size: 1.4rem;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .insta-tile:hover .insta-overlay-icon { opacity: 1; }
+
+  /* ── FOOTER ──────────────────────────────────────── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(255,255,255,0.7);
+    padding: 4rem 2rem 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+  }
+
+  .footer-brand-name {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-brand-tagline {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .footer-social {
+    display: flex; gap: 0.75rem;
+  }
+
+  .footer-social-link {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.2s, border-color 0.2s;
+    color: rgba(255,255,255,0.7);
+  }
+  .footer-social-link:hover {
+    background: var(--driftwood);
+    border-color: var(--driftwood);
+  }
+
+  .footer-col h4 {
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .footer-col ul li a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--driftwood); }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .footer-bottom a {
+    color: var(--driftwood);
+    text-decoration: none;
+  }
+
+  /* ── RESPONSIVE ──────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .categories-grid { grid-template-columns: repeat(2, 1fr); }
+    .category-card.featured { grid-column: span 2; }
+    .instagram-grid { grid-template-columns: repeat(3, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+
+    .hero { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .hero-content { padding: 3rem 1.5rem 4rem; }
+
+    .about-grid,
+    .custom-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+    .categories-grid { grid-template-columns: 1fr; }
+    .category-card.featured { grid-column: span 1; flex-direction: column; }
+
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+
+    .events-grid,
+    .testimonials-grid { grid-template-columns: 1fr; }
+
+    .custom-cards { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+
+    .instagram-grid { grid-template-columns: repeat(3, 1fr); }
+
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+
+    section { padding: 3.5rem 1.25rem; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-actions { flex-direction: column; }
+    .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
+    .categories-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .custom-cards { grid-template-columns: 1fr; }
+    .instagram-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">The Junk Bug</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#custom">Custom Orders</a></li>
+    <li><a href="https://www.instagram.com/thejunkbug" target="_blank" rel="noopener" class="nav-cta">Instagram ↗</a></li>
+  </ul>
+  <div class="nav-hamburger" onclick="this.classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Lowcountry Handmade</p>
+    <h1 class="hero-title">
+      Made with love,<br>
+      <em>right here</em> in<br>
+      the Lowcountry
+    </h1>
+    <p class="hero-subtitle">
+      One-of-a-kind bags, jewellery, signs, wreaths & more —
+      each piece handcrafted with care and coastal soul.
+    </p>
+    <div class="hero-actions">
+      <a href="#shop" class="btn-primary">Shop Collections →</a>
+      <a href="#custom" class="btn-secondary">Custom Orders</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-mosaic">
+      <div class="mosaic-cell c1 tall">🛍️</div>
+      <div class="mosaic-cell c2">🐚</div>
+      <div class="mosaic-cell c3">🌿</div>
+      <div class="mosaic-cell c4">💍</div>
+      <div class="mosaic-cell c5">🪩</div>
+      <div class="mosaic-cell c6 tall">🌸</div>
+      <div class="mosaic-cell c2 wide">🌊</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Handmade with Love</span>
+    <span>Lowcountry Made</span>
+    <span>Custom Orders Welcome</span>
+    <span>Coastal Inspired</span>
+    <span>One-of-a-Kind Pieces</span>
+    <span>Farmers Market Fresh</span>
+    <span>Handmade with Love</span>
+    <span>Lowcountry Made</span>
+    <span>Custom Orders Welcome</span>
+    <span>Coastal Inspired</span>
+    <span>One-of-a-Kind Pieces</span>
+    <span>Farmers Market Fresh</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="about-card">
+          <span class="about-badge">Est. in the Lowcountry</span>
+          <p class="about-quote">
+            "Every piece I create carries a little piece of the coast —
+            the warmth, the texture, the love of this place."
+          </p>
+          <p class="about-sig">— The Junk Bug</p>
+
+          <div class="about-features">
+            <div class="about-feature">
+              <span class="about-feature-icon">🤲</span>
+              <div class="about-feature-text">
+                <strong>Truly Handmade</strong>
+                <p>Each piece crafted by hand, never mass-produced</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <span class="about-feature-icon">🌊</span>
+              <div class="about-feature-text">
+                <strong>Coastal Inspired</strong>
+                <p>Drawing from the beauty of Lowcountry landscapes</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <span class="about-feature-icon">✨</span>
+              <div class="about-feature-text">
+                <strong>One of a Kind</strong>
+                <p>No two pieces are exactly alike</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <span class="about-feature-icon">💌</span>
+              <div class="about-feature-text">
+                <strong>Made with Love</strong>
+                <p>Every order is packaged with care</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-eyebrow">Our Story</p>
+        <h2 class="section-title">Handmade from the heart of the Lowcountry</h2>
+        <p class="section-lead">
+          The Junk Bug started with a passion for turning beautiful materials
+          into wearable and decorative art. Inspired by the lush coastal surroundings
+          of the South Carolina Lowcountry, every bag, bracelet, sign, and wreath
+          is a labor of love.
+        </p>
+        <br>
+        <p class="section-lead">
+          You can find us at local farmers markets across Hilton Head and Bluffton,
+          or place a custom order to get something made just for you.
+          When you buy from The Junk Bug, you're bringing home a little piece of
+          the Lowcountry.
+        </p>
+        <br>
+        <a href="#shop" class="btn-primary" style="display:inline-flex; margin-top:1rem;">
+          Explore the Collection →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP / CATEGORIES -->
+<section id="shop">
+  <div class="container">
+    <div class="section-header center">
+      <p class="section-eyebrow">Collections</p>
+      <h2 class="section-title">Find your perfect piece</h2>
+      <p class="section-lead">From everyday accessories to statement home decor, there's something for everyone.</p>
+    </div>
+
+    <div class="categories-grid">
+      <a href="https://www.instagram.com/thejunkbug" target="_blank" rel="noopener" class="category-card featured">
+        <div class="featured-content">
+          <div class="category-name" style="font-size:1.6rem;">Custom Orders</div>
+          <div class="category-desc">
+            Have something specific in mind? Let's bring your vision to life —
+            personalized gifts, wedding decor, or anything coastal.
+          </div>
+          <a href="#custom" class="featured-cta" onclick="event.stopPropagation()">Start a Custom Order →</a>
+        </div>
+        <div class="featured-icon">🎨</div>
+      </a>
+
+      <a href="https://www.instagram.com/thejunkbug" target="_blank" rel="noopener" class="category-card">
+        <span class="category-emoji">👜</span>
+        <div class="category-name">Bags & Purses</div>
+        <p class="category-desc">Rattan, wicker & woven bags with coastal charm — perfect for beach days and beyond.</p>
+      </a>
+
+      <a href="https://www.instagram.com/thejunkbug" target="_blank" rel="noopener" class="category-card">
+        <span class="category-emoji">💍</span>
+        <div class="category-name">Jewellery</div>
+        <p class="category-desc">Handcrafted earrings, bracelets & necklaces inspired by sea glass, shells & nature.</p>
+      </a>
+
+      <a href="https://www.instagram.com/thejunkbug" target="_blank" rel="noopener" class="category-card">
+        <span class="category-emoji">🪧</span>
+        <div class="category-name">Signs</div>
+        <p class="category-desc">Custom wood and painted signs for your home, porch, or as a thoughtful gift.</p>
+      </a>
+
+      <a href="https://www.instagram.com/thejunkbug" target="_blank" rel="noopener" class="category-card">
+        <span class="category-emoji">🌸</span>
+        <div class="category-name">Wreaths</div>
+        <p class="category-desc">Seasonal and year-round wreaths handcrafted from natural and coastal materials.</p>
+      </a>
+
+      <a href="https://www.instagram.com/thejunkbug" target="_blank" rel="noopener" class="category-card">
+        <span class="category-emoji">🌿</span>
+        <div class="category-name">Centerpieces</div>
+        <p class="category-desc">Beautiful table centerpieces for weddings, events, or everyday home styling.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="section-header center">
+      <p class="section-eyebrow">How It Works</p>
+      <h2 class="section-title">From idea to your doorstep</h2>
+    </div>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-number">1</div>
+        <h3 class="step-title">Browse or Inquire</h3>
+        <p class="step-desc">
+          Explore ready-made pieces on Instagram or reach out for a custom order.
+        </p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">2</div>
+        <h3 class="step-title">We Create</h3>
+        <p class="step-desc">
+          Every piece is handcrafted with care, using quality materials and coastal inspiration.
+        </p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">3</div>
+        <h3 class="step-title">Pick Up or Ship</h3>
+        <p class="step-desc">
+          Grab your piece at a local market, or have it shipped directly to your door.
+        </p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">4</div>
+        <h3 class="step-title">Enjoy &amp; Share</h3>
+        <p class="step-desc">
+          Tag us in your photos! We love seeing our pieces out in the world.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">Find Us</p>
+      <h2 class="section-title">Upcoming market appearances</h2>
+      <p class="section-lead">Come say hello in person! We love meeting our community at local markets across the Lowcountry.</p>
+    </div>
+
+    <div class="events-grid">
+      <div class="event-card">
+        <div class="event-date-badge">
+          <div class="event-month">Mar</div>
+          <div class="event-day">17</div>
+        </div>
+        <div class="event-info">
+          <h3>Hilton Head Farmers Market</h3>
+          <p class="event-location">📍 Coastal Discovery Museum</p>
+          <span class="event-time">9:00 am – 1:00 pm</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-date-badge">
+          <div class="event-month">Mar</div>
+          <div class="event-day">19</div>
+        </div>
+        <div class="event-info">
+          <h3>The Bridge Collective</h3>
+          <p class="event-location">📍 Bluffton Farmers Market, 69 Calhoun St</p>
+          <span class="event-time">12:00 pm – 4:00 pm</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-date-badge">
+          <div class="event-month">Mar</div>
+          <div class="event-day">21</div>
+        </div>
+        <div class="event-info">
+          <h3>Hilton Head Community Market</h3>
+          <p class="event-location">📍 Shelter Cove Community Park</p>
+          <span class="event-time">9:30 am – 12:30 pm</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-date-badge">
+          <div class="event-month">Mar</div>
+          <div class="event-day">24</div>
+        </div>
+        <div class="event-info">
+          <h3>Hilton Head Farmers Market</h3>
+          <p class="event-location">📍 Coastal Discovery Museum</p>
+          <span class="event-time">9:00 am – 1:00 pm</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="events-cta">
+      <a href="https://www.instagram.com/thejunkbug" target="_blank" rel="noopener" class="btn-secondary">
+        Follow @thejunkbug for updates →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOM ORDERS -->
+<section id="custom">
+  <div class="container">
+    <div class="custom-grid">
+      <div>
+        <p class="section-eyebrow">Custom Orders</p>
+        <h2 class="section-title">Something made<br><em style="font-style:italic; color:var(--coastal-blue-light);">just for you</em></h2>
+        <p class="section-lead">
+          Looking for a personalized gift, wedding centerpieces, or a one-of-a-kind
+          piece for your home? Custom orders are welcome and we'd love to bring your
+          vision to life.
+        </p>
+
+        <br>
+
+        <div class="custom-cards">
+          <div class="custom-option">
+            <div class="custom-option-icon">💒</div>
+            <h4>Weddings</h4>
+            <p>Centerpieces, favors & bridal party gifts</p>
+          </div>
+          <div class="custom-option">
+            <div class="custom-option-icon">🎁</div>
+            <h4>Gifts</h4>
+            <p>Personalized for birthdays, holidays & more</p>
+          </div>
+          <div class="custom-option">
+            <div class="custom-option-icon">🏡</div>
+            <h4>Home Decor</h4>
+            <p>Custom signs, wreaths & coastal accents</p>
+          </div>
+          <div class="custom-option">
+            <div class="custom-option-icon">🌴</div>
+            <h4>Events</h4>
+            <p>Unique decor for any special occasion</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="custom-form">
+        <h3>Start a Custom Order</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Jane">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Smith">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label>What are you interested in?</label>
+          <select>
+            <option value="" disabled selected>Select a category</option>
+            <option>Bags & Purses</option>
+            <option>Jewellery</option>
+            <option>Signs</option>
+            <option>Wreaths</option>
+            <option>Centerpieces</option>
+            <option>Wedding / Event Decor</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tell me about your vision</label>
+          <textarea placeholder="Describe what you have in mind — colors, size, occasion, anything helps!"></textarea>
+        </div>
+        <button type="button" class="btn-form">Send My Inquiry ✦</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="love">
+  <div class="container">
+    <div class="section-header center">
+      <p class="section-eyebrow">Customer Love</p>
+      <h2 class="section-title">What our community says</h2>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
+          "I bought one of the rattan bags at the Hilton Head market and I get
+          compliments every single time I carry it. Absolutely beautiful craftsmanship!"
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:var(--driftwood);">S</div>
+          <div>
+            <div class="author-name">Sarah M.</div>
+            <div class="author-loc">Hilton Head, SC</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
+          "Ordered a custom sign for my beach house and it turned out even better
+          than I imagined. So thoughtful and clearly made with love."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:var(--coastal-blue);">K</div>
+          <div>
+            <div class="author-name">Karen L.</div>
+            <div class="author-loc">Bluffton, SC</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">
+          "The centerpieces for my daughter's bridal shower were absolutely stunning.
+          Everyone asked where they came from — highly recommend!"
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:var(--sage);">P</div>
+          <div>
+            <div class="author-name">Patricia H.</div>
+            <div class="author-loc">Savannah, GA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section id="instagram">
+  <div class="container">
+    <div class="section-header center">
+      <p class="section-eyebrow">Follow Along</p>
+      <h2 class="section-title">@thejunkbug on Instagram</h2>
+      <a href="https://www.instagram.com/thejunkbug" target="_blank" rel="noopener" class="instagram-handle">
+        📸 Follow for new arrivals, market dates & behind-the-scenes →
+      </a>
+    </div>
+
+    <div class="instagram-grid">
+      <div class="insta-tile">
+        🛍️
+        <div class="insta-overlay"><span class="insta-overlay-icon">↗</span></div>
+      </div>
+      <div class="insta-tile">
+        🐚
+        <div class="insta-overlay"><span class="insta-overlay-icon">↗</span></div>
+      </div>
+      <div class="insta-tile">
+        💍
+        <div class="insta-overlay"><span class="insta-overlay-icon">↗</span></div>
+      </div>
+      <div class="insta-tile">
+        🌿
+        <div class="insta-overlay"><span class="insta-overlay-icon">↗</span></div>
+      </div>
+      <div class="insta-tile">
+        🪩
+        <div class="insta-overlay"><span class="insta-overlay-icon">↗</span></div>
+      </div>
+      <div class="insta-tile">
+        🌸
+        <div class="insta-overlay"><span class="insta-overlay-icon">↗</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">The Junk Bug</div>
+      <p class="footer-brand-tagline">
+        Handmade with Love, from the Lowcountry.<br>
+        Each piece crafted by hand with coastal soul and care.
+      </p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/thejunkbug" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram">📸</a>
+        <a href="https://www.thejunkbug.com" target="_blank" rel="noopener" class="footer-social-link" aria-label="Website">🌐</a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#shop">Bags & Purses</a></li>
+        <li><a href="#shop">Jewellery</a></li>
+        <li><a href="#shop">Signs</a></li>
+        <li><a href="#shop">Wreaths</a></li>
+        <li><a href="#shop">Centerpieces</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Info</h4>
+      <ul>
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#events">Market Events</a></li>
+        <li><a href="#custom">Custom Orders</a></li>
+        <li><a href="#instagram">Instagram</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="https://www.instagram.com/thejunkbug" target="_blank" rel="noopener">@thejunkbug</a></li>
+        <li><a href="https://www.thejunkbug.com" target="_blank" rel="noopener">www.thejunkbug.com</a></li>
+        <li><a href="#custom">Custom Inquiry Form</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2025 The Junk Bug. Handmade with love in the Lowcountry.</span>
+    <span>Made with ♥ for <a href="https://www.instagram.com/thejunkbug" target="_blank" rel="noopener">@thejunkbug</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
